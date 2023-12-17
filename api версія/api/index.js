@@ -43,14 +43,18 @@ app.post("/api/addColumn", (req, res) => {
   console.log("Column added successfully");
 });
 
-app.delete("/api/deleteRow/:id", (req, res) => {
-
-  db = db.filter((row) => row.id !== parseInt(req.params.id));
-  saveChanges();
-  res.json({ message: "Row deleted successfully" });
-  console.log("Row deleted successfully");
- 
+app.delete("/api/deleteRow/:index", (req, res) => {
+  const index = parseInt(req.params.index -1);
+  if (index >= 0 && index < db.length) {
+    db.splice(index, 1); // Remove the row at the specified index
+    saveChanges();
+    res.json({ message: "Row deleted successfully" });
+    console.log("Row deleted successfully");
+  } else {
+    res.status(400).json({ message: "Invalid index" });
+  }
 });
+
 
 app.delete("/api/deleteColumn/:columnName", (req, res) => {
 
