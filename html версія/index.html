@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Add Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <!-- Add FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Add custom CSS for theme switching -->
+    <link id="theme-link" rel="stylesheet" href="" />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Add this line -->
+      <header class="my-4 d-flex justify-content-between align-items-center">
+        <h1 class="h3">Таблиця котів</h1>
+
+        <div class="form-check form-switch">
+          <i class="fas fa-sun"></i>
+          <i class="fas fa-moon"></i>
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="themeSwitch"
+            onclick="switchTheme()"
+          />
+
+          <label class="form-check-label" for="themeSwitch"></label>
+        </div>
+      </header>
+      <button onclick="editTable()" class="btn" id="editTable">
+        <i class="fas fa-edit">Редагувати таблицю</i>
+      </button>
+      <button onclick="editTable()" class="btn" id="finishEditingTable" style="display: none;">
+        <i class="fas fa-edit">Завершити редагування</i>
+      </button>
+      <div class="table-div">
+        <table class="table" id="data-table">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">Ім'я</th>
+              <th scope="col">Порода</th>
+              <th scope="col">Вік</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <!-- Rows will be added here by JavaScript -->
+          </tbody>
+        </table>
+        <div>
+          <button onclick="addColumn()" class="btn" id="addColumnButton">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Move the "+" button here -->
+
+      <button onclick="addRow()" class="btn mt-2" id="addRowButton">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+
+    <!-- And this line -->
+    <script src="./index.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
