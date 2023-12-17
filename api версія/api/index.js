@@ -44,13 +44,16 @@ app.post("/api/addColumn", (req, res) => {
 });
 
 app.delete("/api/deleteRow/:id", (req, res) => {
+
   db = db.filter((row) => row.id !== parseInt(req.params.id));
   saveChanges();
   res.json({ message: "Row deleted successfully" });
   console.log("Row deleted successfully");
+ 
 });
 
 app.delete("/api/deleteColumn/:columnName", (req, res) => {
+
   db.forEach((row) => {
     delete row[req.params.columnName];
   });
@@ -59,17 +62,12 @@ app.delete("/api/deleteColumn/:columnName", (req, res) => {
   console.log("Column deleted successfully");
 });
 
-app.put("/api/update/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  let updatedRow = db.find((row) => row.id === id);
-  if (updatedRow) {
-    Object.assign(updatedRow, req.body);
-    saveChanges();
-    res.json({ message: "Row updated successfully" });
-  } else {
-    res.status(404).json({ message: "Row not found" });
-  }
+app.put("/api/update", (req, res) => {
+  db = req.body;
+  saveChanges();
+  res.json({ message: "Database updated successfully" });
 });
+
 
 function saveChanges() {
   fs.writeFileSync("./db.json", JSON.stringify(db, null, 2));

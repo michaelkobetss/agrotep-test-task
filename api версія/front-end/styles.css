@@ -6,11 +6,11 @@
 /* To fix the white screen on load */
 body {
   display: none;
-  font-family: "Roboto", sans-serif;
-}
+  /* font-family: "Roboto", sans-serif; */
+  font-family: 'Montserrat', sans-serif;}
 
 .table-div {
   display: grid;
   grid-template-columns: 1fr 50px;
-  overflow-x: scroll;
+
 }

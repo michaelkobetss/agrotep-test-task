@@ -17,7 +17,14 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
     />
 
-    <!-- Roboto font -->
+    <!-- Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@100&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
       rel="stylesheet"
@@ -47,40 +54,47 @@
           <label class="form-check-label" for="themeSwitch"></label>
         </div>
       </header>
-    
-      <div class="card"> 
+
+      <div class="card">
         <div class="card-body">
           <button onclick="editTable()" class="btn" id="editTable">
             <i class="fas fa-edit"></i> Редагувати таблицю
           </button>
-          <button onclick="finishEditing()" class="btn" id="finishEditingTable" style="display: none;">
+          <button
+            onclick="finishEditing()"
+            class="btn"
+            id="finishEditingTable"
+            style="display: none"
+          >
             <i class="fas fa-edit"></i> Завершити редагування
           </button>
+          
           <div class="table-responsive table-div">
-            <form id="tableForm" >
+            <form id="tableForm">
               <table class="table table-striped" id="data-table">
-              <thead>
-                <tr>
-                  <!-- Table head names will be here -->
-                </tr>
-              </thead>
+                <thead>
+                
+                    <!-- Table head names will be here -->
+                 
+                </thead>
 
-              <tbody>
-                <!-- Rows will be added here by JavaScript -->
-              </tbody>
-            </table>
-          </form>
+                <tbody>
+                  <!-- Rows will be added here by JavaScript -->
+                </tbody>
+              </table>
+            </form>
             <div>
               <button onclick="addColumn()" class="btn" id="addColumnButton">
                 <i class="fas fa-plus"></i>
               </button>
             </div>
+            <div class="mb-3">
+              <button onclick="addRow()" class="btn" id="addRowButton">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
           </div>
           <!-- Move the "+" button here -->
-
-          <button onclick="addRow()" class="btn mt-2" id="addRowButton">
-            <i class="fas fa-plus"></i>
-          </button>
         </div>
       </div>
     </div>
