@@ -121,7 +121,7 @@ function editTable() {
   }
 
   // Iterate over all cells in the table
-  for (let i = 2; i < table.rows.length; i++) { // Skip the first row
+  for (let i = 1; i < table.rows.length; i++) { // Skip the first row
     const row = table.rows[i];
 
     // Create delete button for each row
