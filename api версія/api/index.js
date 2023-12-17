@@ -18,7 +18,7 @@ app.post("/api/addRow", (req, res) => {
         if (key === 'id') {
             newRow[key] = db.length + 1;  // Generate a new id
         } else {
-            newRow[key] = "";  // Empty value for the other properties
+            newRow[key] = "-";  // Empty value for the other properties
         }
     });
 
@@ -34,7 +34,7 @@ app.post("/api/addRow", (req, res) => {
 app.post("/api/addColumn", (req, res) => {
     db.forEach((row, index) => {
         const number = Object.keys(row).length
-        row[`Нова колонка ${number}`] = "";
+        row[`Нова колонка ${number}`] = "-";
         console.log(db.length)
     });
 
@@ -56,10 +56,13 @@ app.delete("/api/deleteRow/:index", (req, res) => {
 });
 
 
-app.delete("/api/deleteColumn/:columnName", (req, res) => {
-
+app.delete("/api/deleteColumn/:columnIndex", (req, res) => {
+  const columnIndex = req.params.columnIndex;
+  // Convert the columnIndex to a columnName
+  const columnName = Object.keys(db[0])[columnIndex];
+  
   db.forEach((row) => {
-    delete row[req.params.columnName];
+    delete row[columnName];
   });
   saveChanges();
   res.json({ message: "Column deleted successfully" });

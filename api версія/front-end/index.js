@@ -113,18 +113,24 @@ function editTable() {
   addColumnButton.style.display = "none";
   addRowButton.style.display = "none";
 
-  // Create delete buttons for each column
+  // Create delete buttons for each row
   const thead = table.querySelector("thead");
   const headerRow = thead.insertRow(0);
-  for (let i = 0; i < table.rows[0].cells.length; i++) {
-    const cell = headerRow.insertCell(i);
-    const button = document.createElement("button");
-    button.classList.add("btn");
-    button.innerHTML = '<i class="fas fa-trash"></i>';
-    button.onclick = function () {
-      deleteColumn(i);
-    };
-    cell.appendChild(button);
+  for (let i = -1; i < table.rows[1].cells.length; i++) {
+    if (i !== table.rows[1].cells.length - 1) {
+      const cell = headerRow.insertCell(i);
+      const button = document.createElement("button");
+      button.classList.add("btn");
+      button.innerHTML = '<i class="fas fa-trash"></i><i class="fas fa-arrow-down"></i>';
+      button.onclick = function () {
+        deleteColumn(i);
+      };
+      cell.appendChild(button);
+    } else {
+      const cell = headerRow.insertCell(0);
+      const p = document.createElement("p");
+      cell.appendChild(p);
+    }
   }
 
   // Iterate over all cells in the table
@@ -137,7 +143,7 @@ function editTable() {
       const cell = row.insertCell(0);
       const button = document.createElement("button");
       button.classList.add("btn");
-      button.innerHTML = '<i class="fas fa-trash"></i>';
+      button.innerHTML = '<i class="fas fa-trash"></i><i class="fas fa-arrow-right"></i>';
       button.onclick = function () {
         deleteRow(i - 1); // Adjust the index to account for the new header row
       };
@@ -195,13 +201,13 @@ function finishEditing() {
 
   console.log(data);
   // Send table data to server
-    fetch("http://127.0.0.1:3000/api/update", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then(location.reload());
+  fetch("http://127.0.0.1:3000/api/update", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  }).then(location.reload());
 }
 
 async function deleteRow(rowIndex) {
