@@ -116,14 +116,15 @@ function editTable() {
   // Create delete buttons for each row
   const thead = table.querySelector("thead");
   const headerRow = thead.insertRow(0);
-  for (let i = -1; i < table.rows[1].cells.length; i++) {
-    if (i !== table.rows[1].cells.length - 1) {
+  for (let i = 0; i-1 < table.rows[1].cells.length; i++) {
+    if (i !== 0) {
+      console.log(i)
       const cell = headerRow.insertCell(i);
       const button = document.createElement("button");
       button.classList.add("btn");
       button.innerHTML = '<i class="fas fa-trash"></i><i class="fas fa-arrow-down"></i>';
       button.onclick = function () {
-        deleteColumn(i);
+        deleteColumn(i-1);
       };
       cell.appendChild(button);
     } else {
